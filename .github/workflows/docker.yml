@@ -24,3 +24,9 @@ jobs:
 
       - name: Subir imagen
         run: docker push ${{ secrets.DOCKER_USERNAME }}/hola-mundo:latest
+
+        - name: Deploy to Render
+  run: |
+    curl -X POST \
+    -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
+    https://api.render.com/v1/services/${{ secrets.RENDER_SERVICE_ID }}/deploys
